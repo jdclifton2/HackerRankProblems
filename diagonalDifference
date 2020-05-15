@@ -1,0 +1,59 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'diagonalDifference' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts 2D_INTEGER_ARRAY arr as parameter.
+#
+
+def diagonalDifference(arr):
+    #This is the function that was given.
+    left = get_left_diag(arr)
+    right = get_right_diag(arr)
+    return abs(left - right)
+
+def get_left_diag(arr):
+    #This function gives the sum of the left diagonal. 
+    #[[11, 2, 4], [4, 5, 6], [10, 8, -12]] comment for refrence of input.
+    total = 0
+    for index, row in enumerate(arr):
+        num = row[index]
+        total += num
+    return total        
+
+def get_right_diag(arr):
+    #This function gives the sum of the right diagonal. 
+    index = len(arr) - 1
+    total = 0
+    for row in arr:
+        num = row[index]
+        index = index - 1
+        total += num
+    return total
+    
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = []
+
+    for _ in range(n):
+        arr.append(list(map(int, input().rstrip().split())))
+
+    result = diagonalDifference(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+                
